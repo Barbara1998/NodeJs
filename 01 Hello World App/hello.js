@@ -25,7 +25,7 @@ const serverHandle = function (req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
 
     if (path === '/hello' && 'name' in params) {
-        res.write('Hello miss' + params['name'])
+        res.write('Hello miss ' + params['name'])
     } else {
         res.write('Hello anonymous')
     }
