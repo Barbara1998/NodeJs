@@ -2,5 +2,10 @@
 Nodejs projects's history
 
 # Description
-Part1 : work on the framework ExpressJS
-Part2 : work on TypeScript and transpilation
+Part1 in 02_Express : work on the framework ExpressJS  
+Part2 in 02_Typescript : work on TypeScript and transpilation
+
+# Contributors
+* Cynthia Quaye
+* Barbara Germaneau
+> TD01 SI inter
