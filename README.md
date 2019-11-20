@@ -2,4 +2,5 @@
 Nodejs projects's history
 
 # Description
-This repository will present the work done in Node.JS course
+Part1 : work on the framework ExpressJS
+Part2 : work on TypeScript and transpilation
