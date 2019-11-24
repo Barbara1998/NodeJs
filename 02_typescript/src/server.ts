@@ -27,20 +27,20 @@ app.get('/', (req: any, res: any) => {
 })
 
 //don't know how to render html with typescript 
-// app.get('/hello', (req: any, res: any) => {
-// //   res.write('<html lang="en"> '+
-// //  '<body class="container">'+
-// //       '<div class="col-md-6 col-md-offset-3">'+
-// //           '<h1>Hello </h1>'+
-// //           '<button class="btn btn-success" id="show-metrics">'+
-// //           'Bring the metrics'+
-// //           '</button>'+
-// //           '<div id="metrics"></div>'+
-// //       '</div>'+
-// //   '</body>'+
-// // '</html>')
-//   res.end()
-// })
+app.get('/hello', (req: any, res: any) => {
+  res.write('<html lang="en"> '+
+ '<body class="container">'+
+      '<div class="col-md-6 col-md-offset-3">'+
+          '<h1>Hello </h1>'+
+          '<button class="btn btn-success" id="show-metrics">'+
+          'Bring the metrics'+
+          '</button>'+
+          '<div id="metrics"></div>'+
+      '</div>'+
+  '</body>'+
+'</html>')
+  res.end()
+})
 
 app.listen(port, (err: Error) => {
   if (err) {
