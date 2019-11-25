@@ -9,7 +9,7 @@
     "start": "./node_modules/.bin/ts-node src/server.ts",
     "dev": "./node_modules/.bin/nodemon "
   },
-  "author": "",
+  "author": "Cynthia Quaye and Barbara Germaneau",
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^4.17.2",
