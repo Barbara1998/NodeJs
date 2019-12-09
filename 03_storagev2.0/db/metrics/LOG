@@ -1,3 +1,5 @@
-2019/12/01-00:35:47.752 2d6c Recovering log #71
-2019/12/01-00:35:47.756 2d6c Delete type=0 #71
-2019/12/01-00:35:47.757 2d6c Delete type=3 #69
+2019/12/09-13:43:27.192 3c8c Recovering log #74
+2019/12/09-13:43:27.192 3c8c Level-0 table #76: started
+2019/12/09-13:43:27.198 3c8c Level-0 table #76: 250 bytes OK
+2019/12/09-13:43:27.202 3c8c Delete type=0 #74
+2019/12/09-13:43:27.202 3c8c Delete type=3 #73
