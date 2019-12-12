@@ -69,6 +69,30 @@ describe('Metrics', function () {
 
 
     //'#delete' should delete data
+    describe('#delete', function () {
+        it('should delete data', function (next) {
+            //we will test with these metrics
+            let timestamp : string = "1384686660000"
+            // let metricOne : Metric = new Metric("1384686660000", 10)
+            // let metrics : Metric[] = [metricOne]
+
+            //test on getOne function when clean the db
+            dbMet.deleteOneFromID("1", timestamp, function (err: Error | null, result?: Metric[]) {
+
+                dbMet.getOne("1", function (err: Error | null, result?: Metric[]) {
+                    console.log(result);
+                    //expect result to be null
+                    expect(err).to.be.null
+                    //expect result to be undefined
+                    expect(result).to.not.be.undefined
+                    expect(result).to.be.empty
+
+                    next()
+                })
+
+            })
+        })
+    })
     
     //'#delete' should not fail if data does not exist
 

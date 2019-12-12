@@ -21,10 +21,10 @@ app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({"extended": false}))
 
 //route 1
-app.get('/', (req: any, res: any) => {
-    res.write('Hello world')
-    res.end()
-})
+// app.get('/', (req: any, res: any) => {
+//     res.write('Hello world')
+//     res.end()
+// })
 
 //route 2
 app.get(
@@ -47,9 +47,8 @@ app.post('/metrics/:id', (req: any, res: any) => {
 app.get('/metrics/', (req: any, res: any) => {
     dbMet.getAll(
         (err: Error | null, result: any) => {
-        if(err) throw err    
-        res.status(200).send(result)
-    
+            if(err) throw err    
+            res.status(200).send(result)
         }
     )
 })
@@ -137,11 +136,16 @@ authRouter.get('/logout', (req: any, res: any) => {
     res.redirect('/login')
 })
 
+
 app.post('/login', (req: any, res: any, next: any) => {
+    //search for the user
     dbUser.get(req.body.username, (err: Error | null, result?: User) => {
+        //if not found error
         if (err) next(err)
+        //if undefined not found
         if (result === undefined || !result.validatePassword(req.body.password)) {
         res.redirect('/login')
+        //user found
         } else {
             req.session.loggedIn = true
             req.session.user = result
@@ -149,6 +153,68 @@ app.post('/login', (req: any, res: any, next: any) => {
         }
     })
 })
+
+
+app.post('/signup', (req: any, res: any, next: any) => {
+    var ok = false
+    var newUser = new User(req.body.username, req.body.email, req.body.password)
+
+    //retrieve all users in the database
+    dbUser.getAll((err: Error | null, result: User[]) => {
+        if(err) throw err
+        // res.status(200).send(result)
+        console.log("getall ok")
+        console.log(result)
+        // res.redirect('/login')
+        // if(result.length === 0 ) {
+        //     result.forEach((user: User) => {
+        //         console.log('check for eeach')
+        //         if(user.email === req.body.email || user.username === req.body.username)
+        //             console.log("trouve")
+        //         //user doesn't exist yet
+        //         else console.log("pas trouve")
+        //     })
+        // }
+ 
+ 
+        // res.status(200).send(result)
+
+        // search if the information in the sign up form doesn't already exist 
+        let exist = dbUser.checkUserExist(result, req.body.username, req.body.email,
+            (exist: false | true) => {
+                //if already exist redirect to login form
+                console.log("exist")
+                console.log(exist)
+                if(exist === true){
+                    res.redirect('/login')
+                }
+                //if not save it in the database
+                else if(exist === false){
+                    console.log("save user")
+                    dbUser.save(newUser, (err: Error | null) =>  {
+                        if(err) res.redirect('/signup')
+
+                        ok = true     
+                    })
+                }
+            })
+
+            if(ok === true){
+                req.session.loggedIn = true
+                        req.session.user = newUser
+                        res.redirect('/')  
+            }
+            
+    })
+})
+
+// app.get('/users', (req: any, res: any, next: any) => {
+//     //retrieve all users in the database
+//     dbUser.getAll((err: Error | null, result: any) => {
+//         if(err) throw err
+//         res.status(200).send(result)
+//     })
+// })
 
 /* Athentification Route */
 app.use(authRouter)
