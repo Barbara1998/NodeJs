@@ -1,5 +1,5 @@
-2019/12/12-21:29:55.830 1e1c Recovering log #97
-2019/12/12-21:29:55.830 1e1c Level-0 table #99: started
-2019/12/12-21:29:55.836 1e1c Level-0 table #99: 269 bytes OK
-2019/12/12-21:29:55.838 1e1c Delete type=0 #97
-2019/12/12-21:29:55.838 1e1c Delete type=3 #96
+2019/12/12-21:30:50.108 45e4 Recovering log #100
+2019/12/12-21:30:50.108 45e4 Level-0 table #102: started
+2019/12/12-21:30:50.114 45e4 Level-0 table #102: 274 bytes OK
+2019/12/12-21:30:50.118 45e4 Delete type=0 #100
+2019/12/12-21:30:50.119 45e4 Delete type=3 #98
