@@ -11,6 +11,7 @@ export class User {
         this.email = email
 
         if (!passwordHashed) {
+
             this.setPassword(password)
         } else this.password = password
     }
@@ -22,6 +23,7 @@ export class User {
     
     public setPassword(toSet: string): void {
         // Hash and set password
+        this.password = toSet
     }
     
     public getPassword(): string {
@@ -31,7 +33,8 @@ export class User {
     public validatePassword(toValidate: String): boolean {
         // return comparison with hashed password
         //return utre chose ?????????????????
-        return false
+        // return false
+        return true
     }
 }
 
@@ -63,8 +66,12 @@ export class UserHandler {
             .on('data', function (data) {
                 //retrieve username, password and email
                 let username : string = data.key
-                let password : string = data.value.split(':')[0]
-                let email : string = data.value.split(':')[1]
+                // let password : string = data.value.split(':')[0]
+                // let email : string = data.value.split(':')[1]
+                const [password, email] = data.value.split(":")
+                console.log("pass"+ password)
+
+                console.log("email"+ email)
                 let user = new User(username, email, password)
 
                 //all the users are in
@@ -106,22 +113,16 @@ export class UserHandler {
         }
     }
 
-    // // public checkUserExist(users : User[], username: string, email: string) {
-    // //     console.log('check')
-
-    // //     if(users === [])
-    //         return false
-        
-    // //     else{
-    // //         c
-    // //     }
-    // // }
+    
+    public deleteAll(){
+        this.db.del("user:Barbaraaa")
+    }
 
   
     //save a new user the user's database
     public save(user: User, callback: (err: Error | null) => void) {
         console.log("add user")
-        this.db.put(`user:${user.username}`, `${user.getPassword}:${user.email}`, (err: Error | null) => {
+        this.db.put(`user:${user.username}`, `${user.getPassword()}:${user.email}`, (err: Error | null) => {
             callback(err)
         })
     }

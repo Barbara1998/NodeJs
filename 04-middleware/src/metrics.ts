@@ -182,4 +182,8 @@ export class MetricsHandler {
             this.db.del(tempKey)
         })
     }
+
+    public deleteAll(){
+        this.db.del("Barbaraaa")
+    }
 }
